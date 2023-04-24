@@ -49,17 +49,4 @@ public class UserDao {
 
         return user;
     }
-
-    // TODO : Test Class로 이동
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        User newUser = new User("1", "withbeth", "qwer");
-
-        UserDao dao = new DaoFactory().userDao();
-
-        dao.add(newUser);
-
-        User createdUser = dao.get(newUser.getId());
-        System.out.println("createdUser = " + createdUser);
-    }
-
 }
