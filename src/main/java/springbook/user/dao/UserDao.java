@@ -54,7 +54,7 @@ public class UserDao {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         User newUser = new User("1", "withbeth", "qwer");
 
-        UserDao dao = new UserDao(new MySqlConnectionMaker());
+        UserDao dao = new DaoFactory().userDao();
 
         dao.add(newUser);
 
