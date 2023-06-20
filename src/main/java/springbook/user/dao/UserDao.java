@@ -4,17 +4,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.sql.DataSource;
 import springbook.user.domain.User;
 
 public class UserDao {
-    private final ConnectionMaker connectionMaker;
+    private final DataSource dataSource;
 
-    public UserDao(ConnectionMaker connectionMaker) {
-        this.connectionMaker = connectionMaker;
+    public UserDao(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
-    public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection connection = connectionMaker.getConnection();
+    public void add(User user) throws SQLException {
+        Connection connection = dataSource.getConnection();
 
         PreparedStatement preparedStatement = connection.prepareStatement(
             "insert into users(id, name, password) values(?, ?, ?)");
@@ -28,8 +29,8 @@ public class UserDao {
         connection.close();
     }
 
-    public User get(String userId) throws ClassNotFoundException, SQLException {
-        Connection connection = connectionMaker.getConnection();
+    public User get(String userId) throws SQLException {
+        Connection connection = dataSource.getConnection();
 
         PreparedStatement preparedStatement = connection.prepareStatement(
             "select * from users where id = ?");

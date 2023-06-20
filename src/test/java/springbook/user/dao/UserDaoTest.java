@@ -9,13 +9,13 @@ import springbook.user.domain.User;
 
 class UserDaoTest {
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws SQLException {
 
         ApplicationContext ac = new AnnotationConfigApplicationContext(DaoFactory.class);
 
         UserDao dao = ac.getBean(UserDao.class);
 
-        User newUser = new User("1", "withbeth", "qwer");
+        User newUser = new User("2", "angela", "password");
 
         dao.add(newUser);
 
